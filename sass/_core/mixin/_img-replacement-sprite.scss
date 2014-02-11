@@ -1,0 +1,81 @@
+@charset "utf-8";
+// --------------------------------------------------------------------------------------------------------------------------------
+// 【ミックスイン名】 img-replacement-sprite
+// 【呼び出し】
+// $sp_xxx: sprite-map("__your__spriteimg__dir/*.png");
+// $sp_xxx_img: sprite-url($sp_xxx);
+// .m-xxx--IMGNAME {
+// @include img-replacement-sprite(
+// 	$sp_common_header, // 【必須】sprite-map名
+// 	$sp_common_header_img, // 【必須】sprite-url名
+// 	logo-pasg, // 【必須】 画像名を指定
+// 	display_block, // display
+// 	false, // margin
+// 	valign_false, // [valign_top,valign_middle,valign_bottom,valign_false]
+// 	text_true, // 領域内のテキストを非表示（画像置換）にするか？[text_true:非表示,text_false:表示]
+// 	width_true, // 領域の横幅を自動出力するか
+// 	height_true // 領域の縦幅を自動出力するか
+// );
+// }
+// 【機能】 CSSスプライト
+// --------------------------------------------------------------------------------------------------------------------------------
+@mixin img-replacement-sprite($map: false, $bg-url: false, $name: false, $display: display_false, $margin: false, $valign: valign_false, $text-hide: text_true, $width: width_true, $height: height_true) {
+
+	// 領域内のテキストを非表示にする場合
+	@if $text-hide == text_true{
+		@include img-replacement();
+	}
+
+	// display 設定
+	@if $display == display_inline-block {
+		@include inline-block;
+	} @else if $display == display_block {
+		display: block;
+	}
+
+	// margin 設定
+	@if $margin {
+		margin: unquote($margin);
+	}
+
+	// 画像URL
+	@if $bg-url {
+		background-image: $bg-url;
+		background-repeat: no-repeat;
+	} @else {
+		background-repeat: no-repeat;
+	}
+
+	// valign設定
+	@if $valign == valign_top {
+		vertical-align: top;
+	} @elseif $valign == valign_middle {
+		vertical-align: midddle;
+	} @elseif $valign == valign_bottom {
+		vertical-align: bottom;
+	}
+
+	// 古いブラウザ向けに指定
+	@if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
+		*text-indent: 0;
+		*line-height: 9999px;
+		*text-align: left;
+		*word-wrap: normal;
+	}
+
+	// コンテンツ領域の横幅指定が必要な場合
+	@if $width == width_true {
+		width: image-width( sprite-file($map, $name) );
+	}
+
+	// コンテンツ領域の高さ指定が必要な場合
+	@if $height == height_true {
+		height: image-height( sprite-file($map, $name) );
+	}
+
+	// background-position を計算して出力
+	@if $map and $name {
+		background-position: sprite-position($map, $name);
+	}
+
+}

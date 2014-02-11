@@ -1,0 +1,28 @@
+@charset "utf-8";
+/*----------------------------------------
+	Link Setting
+----------------------------------------*/
+a {
+
+	// PCの場合
+	&:link{ color: #0000FF; }
+	&:visited{ color: #810081; }
+	&:hover{  }
+	&:active{  }
+
+	// SPの場合、下記も指定
+	// display: block;
+	// text-decoration: none;
+	// タップ時のデフォルト色（iOS:薄いグレー／Android:オレンジ・水色）を消す
+	// -webkit-tap-highlight-color: rgba(0,0,0,0);
+	// iOS5以降ではhoverにタップ時の色を指定できます
+	//&:hover{ background-color: #000; }
+
+}
+
+/*----------------------------------------
+	TEXT SELECTION
+----------------------------------------*/
+// テキストドラッグ選択時の色指定
+::-moz-selection{ background-color:#f8fd9f; }
+::selection{ background-color:#f8fd9f; }

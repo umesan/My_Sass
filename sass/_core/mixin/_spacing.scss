@@ -1,0 +1,77 @@
+@charset "utf-8";
+// --------------------------------------------------------------------------------------------------------------------------------
+// 【ミックスイン名】 spacing
+// 【呼び出し】
+// 	＜単数値設定の場合＞
+// 	@include spacing(10);
+// 	
+// 	＜複数値設定の場合＞
+// 	$spacing-val: 10,20,30
+// 	@include spacing($spacing-val);
+// 	
+// 【機能】 レイアウト用margin / padding を自動生成
+// 【参考URL】 http://terkel.jp/archives/2011/03/oocss-spacing-classes-using-sass/
+
+// 【解説】
+// @include spacing(0); すると下記の様な記述が出力されます
+// .pt0, .ptb0, .pa0 {padding-top:    0px !important;}
+// .pr0, .prl0, .pa0 {padding-right:  0px !important;}
+// .pb0, .ptb0, .pa0 {padding-bottom: 0px !important;}
+// .pl0, .prl0, .pa0 {padding-left:   0px !important;}
+// .mt0, .mtb0, .ma0 {margin-top:     0px !important;}
+// .mr0, .mrl0, .ma0 {margin-right:   0px !important;}
+// .mb0, .mtb0, .ma0 {margin-bottom:  0px !important;}
+// .ml0, .mrl0, .ma0 {margin-left:    0px !important;}
+// 
+//	【省略文字の意味】
+//	m : margin
+//	p : padding
+//	a : all
+//	t : top
+//	r : right
+//	b : bottom
+//	l : left
+//	tb: top,bottom
+//	rl: right,left
+
+// --------------------------------------------------------------------------------------------------------------------------------
+
+$spacing: false !default;
+@mixin spacing($size_val) {
+	@if $spacing {}
+	@else {
+		$spacing: true;
+
+/*----------------------------------------
+ Single-propaty for space
+----------------------------------------*/
+		@each $size in $size_val {
+			$type: 'p';
+			$prop: 'padding';
+
+			@for $i from 1 through 2 {
+
+				@if $i > 1 {
+					$type: 'm';
+					$prop: 'margin';
+				}
+
+				.#{$type}t#{$size} { #{$prop}-top:    #{$size}px !important; }
+				.#{$type}r#{$size} { #{$prop}-right:  #{$size}px !important; }
+				.#{$type}b#{$size} { #{$prop}-bottom: #{$size}px !important; }
+				.#{$type}l#{$size} { #{$prop}-left:   #{$size}px !important; }
+
+				.#{$type}tb#{$size},.#{$type}a#{$size} {
+					@extend .#{$type}t#{$size};
+					@extend .#{$type}b#{$size};
+				}
+
+				.#{$type}rl#{$size},.#{$type}a#{$size} {
+					@extend .#{$type}r#{$size};
+					@extend .#{$type}l#{$size};
+				}
+			}
+		}
+
+	}
+}

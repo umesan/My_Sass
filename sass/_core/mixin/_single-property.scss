@@ -1,0 +1,118 @@
+@charset "utf-8";
+// ======================================================================
+
+// 【ファイル名】 _single-property.scss
+// 【このファイルについて】 マルチクラス用、単一のCSSプロパティだけを記述した短い名前のclass集
+// 【更新日】 2014/01/16
+
+// 【セレクタ命名ルール】
+// （基本）
+// CSSプロパティ名の頭文字1文字 + 値の頭文字1文字
+// 例） float: left; → .fl
+
+// （ハイフンのあるプロパティの場合）
+// CSSプロパティ名の頭文字1文字 + -（ハイフン）後の1文字 + 値の頭文字1文字
+// 例） text-align: left; → .tal
+// 例） display: inline-block; → .dib
+
+// ======================================================================
+
+$singlePropaty: false !default;
+@mixin singlePropaty() {
+	@if $singlePropaty {}
+	@else {
+		$singlePropaty: true;
+
+/*----------------------------------------
+ Single-propaty for font
+----------------------------------------*/
+	.fwb{ font-weight: bold !important; }
+	.fwn{ font-weight: normal !important; }
+
+/*----------------------------------------
+ Single-propaty for text-decoration
+----------------------------------------*/
+	.tdu{ text-decoration: underline !important; }
+	.tdn{ text-decoration: none !important; }
+
+/*----------------------------------------
+ Single-propaty for visibility
+----------------------------------------*/
+	.vh{ visibility: hidden !important; }
+	.vv{ visibility: visible !important; }
+
+/*----------------------------------------
+ Single-propaty for float
+----------------------------------------*/
+	.fl { float:left !important; }
+	.fr { float:right !important; }
+	.fn { float:none !important; }
+
+/*----------------------------------------
+ Single-propaty for text-align
+----------------------------------------*/
+	.tal { text-align:left !important; }
+	.tar { text-align:right !important; }
+	.tac { text-align:center !important; }
+
+/*----------------------------------------
+ Single-propaty for vertical-align
+----------------------------------------*/
+	.vat { vertical-align:top !important; }
+	.vam { vertical-align:middle !important; }
+	.vab { vertical-align:bottom !important; }
+
+/*----------------------------------------
+ Single-propaty for position
+----------------------------------------*/
+	.pr { position:relative !important; }
+	.pa { position:absolute !important; }
+
+/*----------------------------------------
+ Single-propaty for display
+----------------------------------------*/
+	.db { display:block !important;}
+	.di { display:inline !important;}
+	.dn { display:none !important;}
+	.dib{ display:inline-block !important;}
+	.dt { display:table !important;}
+	.dtc{ display:table-cell !important;}
+
+/*----------------------------------------
+ Single-propaty for margin
+----------------------------------------*/
+	.mrla{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+/*----------------------------------------
+ Single-propaty for Width
+----------------------------------------*/
+	.w-full   { width: 100%; }
+	.w-half   { width: 50%; }
+	.w-third  { width: 33.3%; }
+	.w-quater { width: 25%; }
+	.w-fifth  { width: 20%; }
+
+/*----------------------------------------
+ Single-propaty for image Replace
+----------------------------------------*/
+	.ir{
+		text-indent: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+/*----------------------------------------
+ Single-propaty for ellipsis
+----------------------------------------*/
+	.elp{
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		@if $experimental-support-for-opera { -o-text-overflow: ellipsis; }
+	}
+
+	}
+}

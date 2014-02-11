@@ -1,0 +1,15 @@
+@charset "utf-8";
+// --------------------------------------------------------------------------------------------------------------------------------
+// 【ミックスイン名】 placeholder-color
+// 【呼び出し】 @include placeholder-color(#cccccc);
+// 【機能】 placeholder属性で、表示される文字色を変更する
+// 【参考URL】 http://howtohp.com/css/html5-placeholder-style.html
+// --------------------------------------------------------------------------------------------------------------------------------
+@mixin placeholder-color($color) {
+	&:-moz-placeholder {
+	color:$color;
+	}
+	&::-webkit-input-placeholder {
+	color:$color;
+	}
+}

@@ -1,0 +1,78 @@
+@charset "utf-8";
+// ======================================================================
+
+// 【ファイル名】 _core.scss
+// 【このファイルについて】
+// 	* このファイルでは、coreディレクトリ内のファイルを全てインポートしています
+// 	* coreディレクトリには、Web制作全般で汎用的に使える、設定・Mixinsファイルが配置されています
+// 	* $css_init がtrueの際、_config.scssの設定を元に初期セットを出力します
+// 
+// 【更新日】 2014/01/16
+
+// ======================================================================
+
+// COMPASSフレームワークの読み込み
+@import "compass";
+
+// 初期設定ファイル読み込み
+$css_init : false !default;
+@import "../_config.scss";
+
+// 独自 mixin 読み込み
+@import "./mixin/_clearfix.scss";
+@import "./mixin/_ellipsis.scss";
+@import "./mixin/_img-replacement.scss";
+@import "./mixin/_inline-block.scss";
+@import "./mixin/_min_height.scss";
+@import "./mixin/_compass_overwrite.scss";
+@import "./mixin/_placeholder-color.scss";
+@import "./mixin/_spacing.scss";
+@import "./mixin/_fontTable.scss";
+@import "./mixin/_img-replacement-sprite.scss";
+@import "./mixin/_img-replacement-sprite-sp.scss";
+@import "./mixin/_single-property.scss";
+
+// 独自 placeholder ファイル読み込み
+@import "./placeholder/_clearfix.scss";
+@import "./placeholder/_ellipsis.scss";
+@import "./placeholder/_img-replacement.scss";
+@import "./placeholder/_inline-block.scss";
+
+// 独自 function 読み込み
+@import "./function/_fz.scss";
+@import "./function/_fs.scss";
+
+
+
+
+//--------------------------------------------------
+// $css_init がtrueの場合 初期セットを出力
+//--------------------------------------------------
+@if $css_init {
+
+	// $configFontTable がtrueの場合
+	// フォント一覧表を出力
+	@if $configFontTable{
+		@include fontTable($fontSizeDef,$fontSizeType);
+	}
+}
+
+// リセットCSS読み込み
+@import "./reset/_setting.scss";
+
+
+@if $css_init {
+
+	@if $configClearfix{
+		@include clearfix();
+	}
+
+	@if $configSpacing{
+		@include spacing($configSpacing);
+	}
+
+	@if $configSinglePropaty{
+		@include singlePropaty();
+	}
+
+}

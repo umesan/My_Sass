@@ -1,0 +1,70 @@
+@charset "utf-8";
+// =================================================
+
+// 【ファイル名】 _setting.scss
+// 【このファイルについて】 _config.scssでの設定を元に、出力するリセットcssを切り替えます
+// 【更新日】 2014/01/15
+
+// 【解説】
+// @if 内での@import ができなかったため、
+// 各リセットCSSをmixin化し、@includeで呼び出す方式を採用しています。
+
+// これができない
+// @if $cssreset == xxx {
+//		@import "_xxxx.scss";
+// }
+
+// =================================================
+
+//--------------------------------------------------
+// Reset for Vendor
+//--------------------------------------------------
+@import "_html5doctor.scss";
+@import "_normalize-2.1.1.scss";
+@import "_normalize-2.1.2.scss";
+@import "_normalize-2.1.3.scss";
+
+//--------------------------------------------------
+// Reset for Compass
+//--------------------------------------------------
+@import "_compass.scss";
+
+//--------------------------------------------------
+// Output
+//--------------------------------------------------
+@if $css_init {
+	@if $cssreset == html5doctor {
+		@include html5doctor;
+	}@else if $cssreset == normalize-211 {
+		@include normalize-211;
+	}@else if $cssreset == normalize-212 {
+		@include normalize-212;
+	}@else if $cssreset == normalize-213 {
+		@include normalize-213;
+	}@else if $cssreset == compass {
+		@include compassReset;
+	}
+
+//--------------------------------------------------
+// CSSリセット後に、基準font設定をOverWrite
+//--------------------------------------------------
+
+	@if $configAllwaysScrollbar{
+	/*----------------------------------------
+	 Always Scrollbar
+	----------------------------------------*/
+		html { overflow-y:scroll; }
+	}
+
+	/*----------------------------------------
+	 OverWrite FontSetting
+	----------------------------------------*/
+	body{
+		font-size: $fontSizeDef;
+		font-family: $fontFamily;
+		line-height: $lineHeight;
+		@if $configSPtextSizeAdjust{
+			-webkit-text-size-adjust: 100%;
+		}
+	}
+}

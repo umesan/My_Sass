@@ -1,0 +1,157 @@
+@charset "utf-8";
+// ======================================================================
+
+// 【ファイル名】 _config.scss
+// 【このファイルについて】 プロジェクトの初期設定ファイル
+// 【更新日】 2014/01/15
+
+// ======================================================================
+
+// ======================================================================
+// 
+// 1. CSSリセットの方式を選択
+// 
+// [none]
+// リセットCSSを出力しません
+// 
+// [html5doctor]
+// 説明： HTML5用のリセットCSS「HTML5 Doctor CSS Reset」 を出力 
+// url:http://www.cssreset.com/scripts/html5-doctor-css-reset-stylesheet/
+
+// [normalize-xxx]
+// 説明：　「normalize.css」と呼ばれる、全てをリセットするのではなく、ブラウザごとのバグ補正と必要な部分のみリセットするCSSを出力
+// url:http://necolas.github.io/normalize.css/
+
+// [compass]
+// 説明：Eric Meyer’s reset 2.0をベースにしたCompassが用意しているデフォルトのリセットCSSを出力
+// url:http://meyerweb.com/eric/tools/css/reset/
+
+// ======================================================================
+
+// $cssreset : none;
+$cssreset : html5doctor;
+// $cssreset : normalize-211;
+// $cssreset : normalize-212;
+// $cssreset : normalize-213;
+// $cssreset : compass;
+
+
+
+
+
+// ======================================================================
+// 2. FONT指定
+// ======================================================================
+
+// ----------------------------------------------------------------------
+// 2-1. このサイトで使用するfont-sizeは px指定か%(percent)か？ [px / percent]
+// ----------------------------------------------------------------------
+$fontSizeType : px;
+// $fontSizeType : percent;
+
+// ----------------------------------------------------------------------
+// 2-2. 基準 font-sizeの指定 [ 12px～16px ]
+//  - body に指定するfont-size になります
+//  - このサイトがフォントサイズをpx で使用する場合は、ここで指定したfont-sizeがデフォルトのサイズになります。
+//  - このサイトがフォントサイズを% で使用する場合は、ここで指定したfont-sizeをベースに各font-sizeを%指定します。
+// ----------------------------------------------------------------------
+//$fontSizeDef : 12px;
+// $fontSizeDef : 13px;
+$fontSizeDef : 14px;
+// $fontSizeDef : 15px;
+// $fontSizeDef : 16px;
+
+
+// ----------------------------------------------------------------------
+// 2-3. font-family 設定
+// ----------------------------------------------------------------------
+// PC
+$fontFamily : "メイリオ",Meiryo,"ＭＳ Ｐゴシック","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",sans-serif;
+
+// SP
+// $fontFamily : ArialMT, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
+// $fontFamily : "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", sans-serif;
+
+
+// ----------------------------------------------------------------------
+// 2-4. lineheight 設定
+// ----------------------------------------------------------------------
+$lineHeight: 1;
+
+
+// ----------------------------------------------------------------------
+// 2-5. スマホサイト向けに、iPhoneのSafariで縦横でもフォントサイズが変わらなくするか？
+// （true の場合、body に -webkit-text-size-adjust: 100%; を設定する）
+// http://tech.nitoyon.com/ja/blog/2013/02/14/text-size-adjust/
+// ----------------------------------------------------------------------
+$configSPtextSizeAdjust: false;
+
+
+
+
+
+
+// ======================================================================
+// 3. $css_initがtrueの際、下記の設定に応じて、サイト初期セットを作成
+// ======================================================================
+
+// スクロールバーを常に表示するか？ - htmlにoverflow-y:scroll; を付加します
+$configAllwaysScrollbar:false;
+
+// フォント一覧表を出力するか？ - px % の変換表がCSSの上部に挿入されます
+$configFontTable:false;
+
+// .clearfix クラスを出力するか？ - リセットCSSの後に、.clearfixクラスを出力します
+$configClearfix:false;
+
+// margin／padding スペースクラスを出力するか？
+// 10*i
+// $configSpacing:0,10,20,30,40,50,60,70,80,90,100;
+// 5*i
+// $configSpacing:0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100;
+// 1*i
+//$configSpacing: 0,1,2,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18,19,20,23,24,25,27,28,30,33,35,37,38,40,45,50,55,60,65,70,75,79,80,81,85,90,95,100;
+// 使わない場合はfalse
+$configSpacing: false;
+
+// サイト制作支援用 シングルプロパティを出力するか？
+$configSinglePropaty: false;
+
+
+
+
+
+// ======================================================================
+// 4. Compass の @include を利用した際に、
+//    プロパティにベンダープレフィックスをどこまでつけるか？
+//    また、対象ブラウザ用の独自スタイル処理を付加するか？
+// ======================================================================
+// [参考URL]
+// http://howtohp.com/css/compass-control-prefix.html
+// http://met.hanatoweb.jp/archives/351/
+// ----------------------------------------------------------------------
+
+// IE6 [初期値:true]
+$legacy-support-for-ie6 : false;
+// IE7 [初期値:true]
+$legacy-support-for-ie7 : false;
+// IE8 [初期値:true]
+$legacy-support-for-ie8 : false;
+// webkit [初期値:true]
+$experimental-support-for-webkit:true;
+// Mozilla  [初期値:true]
+$experimental-support-for-mozilla: true;
+// Firefox 3.6以前対応 [初期値:true]
+$legacy-support-for-mozilla:false;
+// Opera [初期値:true]
+$experimental-support-for-opera: false;
+// Microsoft [初期値:true]
+$experimental-support-for-microsoft: false;
+// KHTML [初期値:false]
+$experimental-support-for-khtml: false;
+// WebKitグラデ[初期値:true]
+$support-for-original-webkit-gradients:true;
+// SVG [初期値:false]
+$experimental-support-for-svg: false;
+// CSS PIE[初期値:false]
+$experimental-support-for-pie:false;
